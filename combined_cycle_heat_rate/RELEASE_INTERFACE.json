@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0",
+  "scientific_root": "combined_cycle_heat_rate",
+  "paper": "combined_cycle_heat_rate",
+  "published": false,
+  "doi": null,
+  "figure_map": {
+    "2": 3,
+    "3": 4,
+    "4": 5,
+    "5": 6
+  },
+  "new_main_figure": 2,
+  "scientific_values_and_model_caches_changed": false,
+  "raw_replay_requires_external_legal_inputs": true,
+  "retained_main_layout": "compact_A",
+  "historical_mean_comparator": "historical_mean/input_manifest.json",
+  "historical_mean_location": "SI S15.3/Table S15e",
+  "historical_mean_fit_count": 0
+}
