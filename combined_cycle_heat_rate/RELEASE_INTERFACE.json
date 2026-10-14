@@ -1,9 +1,7 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scientific_root": "combined_cycle_heat_rate",
   "paper": "combined_cycle_heat_rate",
-  "published": false,
-  "doi": null,
   "figure_map": {
     "2": 3,
     "3": 4,

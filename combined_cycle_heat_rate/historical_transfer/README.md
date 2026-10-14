@@ -4,7 +4,7 @@ This directory contains full-source and six single-source-omission evaluations,
 facility changes, matched-date comparisons, 1,000 assignment controls and
 5,000 operator-cluster draws. `SCOPE_MAP.json` describes the available operations;
 `INPUT_SCOPE.json` identifies the inputs and `DATA_DICTIONARY.csv` defines result
-fields. Release version 1.0.0 is prepared for deposition.
+fields.
 
 ## Sources And License
 

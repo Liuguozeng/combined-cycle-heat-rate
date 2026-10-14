@@ -1,13 +1,15 @@
+---
 cff-version: 1.2.0
-message: "Please cite this software when reusing the code or derived evidence."
+message: Please cite this software when reusing the code or derived evidence.
 type: software
-title: "Historical facility departures retain later-year information in fixed combined-cycle heat-rate baselines"
-version: 1.0.0
-date-released: 2026-10-14
-url: "https://github.com/Liuguozeng/combined-cycle-heat-rate"
-repository-code: "https://github.com/Liuguozeng/combined-cycle-heat-rate"
+title: Historical facility departures retain later-year information in fixed combined-cycle
+  heat-rate baselines
+version: 1.0.1
+date-released: '2026-10-15'
+url: https://github.com/Liuguozeng/combined-cycle-heat-rate
+repository-code: https://github.com/Liuguozeng/combined-cycle-heat-rate
 authors:
-  - family-names: Zhao
-    given-names: Di
-  - family-names: Liu
-    given-names: Guo-Zeng
+- family-names: Zhao
+  given-names: Di
+- family-names: Liu
+  given-names: Guo-Zeng
