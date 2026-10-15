@@ -1,6 +1,6 @@
 # Combined cycle heat rate
 
-Release version: 1.0.2.
+Release version: 1.0.3.
 
 This package contains fixed-relation results, receiving-facility evaluations,
 historical-assignment controls and figure source values. Extract the code and
@@ -19,6 +19,13 @@ renders data figures from their source values. `fixed` evaluates included
 daily inputs and serialized model caches, together with historical-assignment
 comparisons. Choose a separate, new output directory for each operation.
 All four commands accept the combined-cycle heat-rate release only.
+
+Main data figures show single-year facility departures (Figure 2), cross-year
+persistence (Figure 3), historical facility-assignment comparisons and the
+historical-mean predictor (Figure 4), and interval performance (Figure 5).
+The operating-support distribution is Supplementary Figure S3. Stable numerical
+source identities are listed separately from display numbers in
+`MANUSCRIPT_INTERFACE.json`.
 
 Numerical reductions of the supplied tables are separate:
 

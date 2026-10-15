@@ -69,14 +69,16 @@ directory support fixed-model evaluation and derived-result reconstruction.
 
 ## Figures
 
-The manuscript renderer reads the supplied source values and writes current
-Figure 2, Figure S2 and source-value mappings to a new output directory.
+The source renderer reads the supplied values and writes its assignment-control
+figure, Figure S2 and source-value mappings to a new output directory. The
+package-root `reproduce.py figures` command labels the assignment-control figure
+as main Figure 4 and produces the complete manuscript set.
 
 ```bash
 python3 -B code/render_historical_transfer.py --results results --output NEW_EMPTY_OUTPUT
 ```
 
-Figure 2c displays the 1,000 permuted facility assignments per model with
+Panel c displays the 1,000 permuted facility assignments per model with
 shared bins and count scales; each blue marker is the actual facility mapping.
 These ordinary permutations may retain original assignments. Figure S2 includes
 the 120-facility main and 101-facility matched-date scopes. Facilities are sorted

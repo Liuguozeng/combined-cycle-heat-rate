@@ -5,7 +5,7 @@ Code, fixed model specifications and derived evidence for multi-year combined-cy
 ## Reproduce
 
 Clone this repository, then download `combined_cycle_heat_rate_data.zip` from
-[release 1.0.2](https://github.com/Liuguozeng/combined-cycle-heat-rate/releases/tag/v1.0.2) and extract it in the repository
+[release 1.0.3](https://github.com/Liuguozeng/combined-cycle-heat-rate/releases/tag/v1.0.3) and extract it in the repository
 root. Its members complete the existing `combined_cycle_heat_rate/` directory.
 
 ```bash
@@ -28,6 +28,6 @@ into the same empty directory; their disjoint members form one package root.
 
 Original analysis and plotting code is available under the MIT license.
 Source data, upstream material and derived data retain the terms documented in
-[`LICENSE_MATRIX.csv`](combined_cycle_heat_rate/LICENSE_MATRIX.csv) and the package attribution
+`LICENSE_MATRIX.csv` in the data archive and the package attribution
 records. The MIT license does not replace those source-specific terms.
 Original source archives are obtained from the cited official records.

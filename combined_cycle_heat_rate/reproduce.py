@@ -85,13 +85,14 @@ def main():
     for path in newer.glob('*'):
         if path.suffix not in ('.pdf', '.png', '.svg'):
             continue
-        name = re.sub('combined_cycle_heat_rate_Figure_' + str(old_main), 'Figure_2', path.name)
+        name = re.sub('combined_cycle_heat_rate_Figure_' + str(old_main), 'Figure_4', path.name)
+        name = re.sub(r'^Figure_2(?=[_.])', 'Figure_4', name)
         name = re.sub('combined_cycle_heat_rate_Figure_S', 'Figure_S', name)
         target = a.output / name
         target.write_bytes(path.read_bytes())
         outputs.append(name)
-    if not any(n.startswith('Figure_2.') for n in outputs):
-        raise ValueError('New core Figure 2 was not generated')
+    if not any(n.startswith('Figure_4.') for n in outputs):
+        raise ValueError('Historical-assignment Figure 4 was not generated')
     (a.output / 'REPRODUCTION_RECEIPT.json').write_text(json.dumps({
         'identity': identity, 'core_outputs': outputs, 'retained_directory': 'retained',
         'raw_replay': 'NOT_EXECUTED', 'model_fits': 0}, indent=2) + '\n')
