@@ -1,4 +1,4 @@
-'Render frozen primary combined_cycle_heat_rate Figures 2 and 3; no fitting or CI estimation.\n\nFigures 4 and 5 and retrospective S1 use the existing hash-bound\nselected_presentation/scripts/build_mixed_evidence_figures.py entrypoint with\n--followup-input-manifest, --figures combined_cycle_heat_rate:4 combined_cycle_heat_rate:5, --heat_rate-fig4-variant A,\n--heat_rate-fig5-variant followup_first and --emit-retrospective-si.\n'
+'Render primary and subsequent-year heat-rate source values.\n\nUse the package-root reproduce.py figures command for the current manuscript\nfigure numbering and complete output set.\n'
 import argparse
 import hashlib
 import json

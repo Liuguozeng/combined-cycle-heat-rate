@@ -1,6 +1,6 @@
 # Combined cycle heat rate
 
-Release version: 1.0.1.
+Release version: 1.0.2.
 
 This package contains fixed-relation results, receiving-facility evaluations,
 historical-assignment controls and figure source values. Extract the code and

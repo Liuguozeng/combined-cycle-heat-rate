@@ -571,11 +571,11 @@ class Builder:
 def main():
     p=argparse.ArgumentParser()
     p.add_argument('--candidate',type=Path,default=Path(__file__).resolve().parents[1])
-    p.add_argument('--package-root',type=Path,help='Portable return_temperature_comparability package with declared results and figure metadata')
+    p.add_argument('--package-root',type=Path,help='Package directory containing the declared source values and figure metadata')
     p.add_argument('--output-root',type=Path,required=True)
-    p.add_argument('--figures',nargs='*',help='Optional prototype subset, e.g. return_temperature_comparability:2 return_temperature_comparability:3 combined_cycle_heat_rate:4')
+    p.add_argument('--figures',nargs='*',help='Optional subset of figure keys defined by the package figure metadata')
     p.add_argument('--heat_rate-fig4-variant',choices=['A','B','C'],default='A')
-    p.add_argument('--followup-input-manifest',type=Path,help='Five hash-bound primary/followup result inputs; no raw-data reanalysis')
+    p.add_argument('--followup-input-manifest',type=Path,help='Manifest identifying the primary and subsequent-year result inputs')
     p.add_argument('--heat_rate-fig5-variant',choices=['legacy','parallel','followup_first'],default='legacy')
     p.add_argument('--emit-retrospective-si',action='store_true')
     args=p.parse_args();followup=None
