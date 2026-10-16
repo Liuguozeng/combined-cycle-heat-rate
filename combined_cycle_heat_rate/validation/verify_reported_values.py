@@ -48,13 +48,17 @@ required_scope_fields = {
     'artifact', 'scientific_role', 'source_version', 'verification_mode',
     'runner', 'required_inputs', 'expected_sha256', 'license_boundary',
 }
-allowed_modes = {'recomputed', 'hash_verified', 'presentation_derived', 'source_restricted', 'derived_point_reduction'}
+allowed_modes = {'recomputed', 'hash_verified', 'presentation_derived', 'source_restricted',
+                 'derived_point_reduction', 'executable_or_specification', 'response_fit_and_evaluation'}
 for row in scope_rows:
     artifact = ROOT / row['artifact']
     schema_ok = set(row) == required_scope_fields and row['verification_mode'] in allowed_modes
     hash_ok = artifact.is_file() and sha256(artifact) == row['expected_sha256']
-    runner = ROOT / row['runner']
-    runner_ok = runner.is_file()
+    runner = (ROOT / row['runner']).resolve()
+    runner_ok = runner.is_relative_to(ROOT) and runner.is_file()
+    inputs_ok = row['verification_mode'] == 'source_restricted' or all(
+        (ROOT / p).resolve().is_relative_to(ROOT) and (ROOT / p).is_file()
+        for p in row['required_inputs'])
     if row['verification_mode'] == 'recomputed':
         runner_ok = runner_ok and runner.name == 'rerun_submission_results.py'
     elif row['verification_mode'] == 'derived_point_reduction':
@@ -62,7 +66,12 @@ for row in scope_rows:
                      and row['runner'] == 'historical_mean/code/historical_mean_control.py'
                      and row['required_inputs'] == ['historical_mean/input_manifest.json']
                      and (ROOT / row['required_inputs'][0]).is_file())
-    checks.append((schema_ok and hash_ok and runner_ok, f"reproduction-scope:{row['artifact']}"))
+    elif row['verification_mode'] in {'executable_or_specification', 'response_fit_and_evaluation'}:
+        runner_ok = (runner_ok
+                     and row['artifact'].startswith('response_transfer/')
+                     and row['runner'] == 'response_transfer/analysis.py'
+                     and row['required_inputs'] == ['response_transfer/input_manifest.json'])
+    checks.append((schema_ok and hash_ok and runner_ok and inputs_ok, f"reproduction-scope:{row['artifact']}"))
 
 source_provenance_path = ROOT / 'source_provenance/SOURCE_ACQUISITION_MANIFEST.csv'
 with source_provenance_path.open(encoding='utf-8-sig', newline='') as handle:

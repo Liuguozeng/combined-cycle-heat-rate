@@ -140,13 +140,13 @@ class Builder:
         if followup is not None:
             if not self.selected or not self.selected.issubset({'combined_cycle_heat_rate:4','combined_cycle_heat_rate:5'}):
                 raise ValueError('Followup presentation requires an explicit combined_cycle_heat_rate:4/5 subset')
-            if fig4_variant!='A':raise ValueError('Followup preserves the accepted Fig.4 A organization')
+            if fig4_variant!='A':raise ValueError('Subsequent-year rendering requires figure-4 variant A')
             if 'combined_cycle_heat_rate:5' in self.selected and fig5_variant=='legacy':
-                raise ValueError('Choose parallel or followup_first; do not silently render the old Fig.5')
+                raise ValueError('Subsequent-year figure 5 requires parallel or followup_first')
         elif fig5_variant!='legacy' or emit_retrospective_si:
             raise ValueError('A hash-bound followup input manifest is required')
         if emit_retrospective_si and fig5_variant!='followup_first':
-            raise ValueError('The retrospective SI preview belongs to the followup-first option')
+            raise ValueError('Retrospective SI requires the followup_first figure-5 variant')
 
     def data(self,paper,name):
         if self.package_root is not None:
