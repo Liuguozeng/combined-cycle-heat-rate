@@ -1,0 +1,33 @@
+{
+  "input_root": "..",
+  "files": [
+    {
+      "path": "reproduction/reference_inputs/source_daily/SIX_FACILITY_DAILY_ENDPOINT.csv.gz",
+      "sha256": "5dfd42d2eb55ac0024504bdd0c5a6ce35f8ed6dac6b4235d133db102fe93d826"
+    },
+    {
+      "path": "followup2025_evidence/reference/model_spec/FIXED_RELATION_SPECIFICATION.json",
+      "sha256": "ae16bf690f7213529cad851eb14ebdb29bb096a9885de7c21c904567b00f49b3"
+    },
+    {
+      "path": "historical_transfer/results/FULL_2024_BRIDGE_PREDICTIONS.csv.gz",
+      "sha256": "3347c001f223963dff669527f48382cbf0600cdc7767cd8c5ffce546e94b1745"
+    },
+    {
+      "path": "historical_transfer/results/FULL_MAIN_2025_ALTERNATIVES.csv.gz",
+      "sha256": "3e3a30077468a2be0eb88a9d278463ab18262e08997bcf99d196a09a3f776309"
+    },
+    {
+      "path": "historical_transfer/results/FULL_CONDITIONAL_2025_ALTERNATIVES.csv.gz",
+      "sha256": "6f1b584af544bae86ff9d5d09b301332398cab524e24b0fb61581a6a0899137d"
+    },
+    {
+      "path": "historical_transfer/results/FACILITY_IDENTITY_AND_OPERATOR_CHANGES.csv",
+      "sha256": "aa8d224d2ff06f335d4a10e45f034ed9409db92b2d78f076751c86a4dbbede90"
+    },
+    {
+      "path": "historical_transfer/results/BOOTSTRAP_OPERATOR_WEIGHTS.npz",
+      "sha256": "b033b377f3e0c74ef52827d950db5b78acb59517dfab38459f9214de86e866df"
+    }
+  ]
+}

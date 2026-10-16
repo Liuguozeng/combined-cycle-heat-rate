@@ -31,7 +31,7 @@ def verify(root):
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument('command', choices=['verify', 'figures', 'fixed', 'historical-mean'])
+    p.add_argument('command', choices=['verify', 'figures', 'fixed', 'historical-mean', 'response'])
     p.add_argument('--package-root', type=Path, required=True)
     p.add_argument('--input-manifest', type=Path)
     p.add_argument('--output', type=Path)
@@ -66,6 +66,9 @@ def main():
         return
     if a.output is None or a.output.exists():
         raise ValueError('An explicit new empty output directory is required')
+    if a.command == 'response':
+        invoke(root / 'response_transfer/analysis.py', ['--package-root', root, '--output', a.output])
+        return
     a.output.mkdir(parents=True)
     if a.command == 'fixed':
         for name in ('OPENBLAS_NUM_THREADS', 'OMP_NUM_THREADS', 'MKL_NUM_THREADS', 'VECLIB_MAXIMUM_THREADS', 'NUMEXPR_NUM_THREADS'):

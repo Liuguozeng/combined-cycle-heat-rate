@@ -41,10 +41,13 @@ def main():
            ['--input-manifest', root / 'selected_presentation/presentation_inputs.json', '--output', compact])
     records = []
     for source, display in [(primary / 'Figure_2/Figure_2', 'Figure_S3'),
-                            (primary / 'Figure_3/Figure_3', 'Figure_2'),
+                            (primary / 'Figure_3/Figure_3', 'Figure_S4'),
                             (compact / 'Figure_6', 'Figure_3'),
                             (compact / 'Figure_5', 'Figure_5')]:
         copy_figure(source, output / display, records, str(source.relative_to(output)))
+    response_output = output / 'response_evidence'
+    invoke(root / 'response_transfer/render.py', ['--results', root / 'response_transfer/results', '--output', response_output])
+    copy_figure(response_output / 'Figure_2', output / 'Figure_2', records, 'historical_levels_and_response')
     from followup_presentation import FollowupInputs, render_retrospective_si
     inputs = FollowupInputs(root / 'selected_presentation/presentation_inputs.json')
     holder = SimpleNamespace(output=output / 'supplementary_evidence', records=[])

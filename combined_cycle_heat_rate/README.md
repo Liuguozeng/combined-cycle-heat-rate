@@ -63,3 +63,7 @@ Figure exports are generated outputs rather than package inputs. Permitted
 derived data, model specifications, dictionaries and source values accompany
 the code. Source terms and redistribution scope are in `LICENSE_MATRIX.csv`
 and the attribution records.
+
+## Historical response alternatives
+
+`reproduce.py response` estimates the declared within-source and historical local response alternatives from supplied 2024 records and evaluates 2025. See `response_transfer/README.md`. The original fixed and historical-mean commands retain their existing scientific behavior.

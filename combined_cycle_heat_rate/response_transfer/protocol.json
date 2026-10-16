@@ -1,0 +1,28 @@
+{
+  "history_year": 2024,
+  "evaluation_year": 2025,
+  "models": [
+    "M1",
+    "M2"
+  ],
+  "candidates": [
+    "historical_mean",
+    "historical_median",
+    "original_centered",
+    "within_source_centered",
+    "local_response"
+  ],
+  "within_source": "center both frozen scaled features and outcome within each original discovery facility; ridge alpha=1; no intercept; retain day weights",
+  "local_response": "one unconstrained scalar per facility/model minimizing 2024 absolute error around the 2024 observed mean; weighted-median solution; smallest minimizer; zero if no response variation",
+  "strata": "2024 facility-equal weighted tertiles of temperature and load, crossed into 9 cells; fixed 2025 calendar quarters",
+  "scopes": [
+    "main",
+    "matched_dates"
+  ],
+  "historical_means_in_matched_scope": "full 2024 history, unchanged",
+  "aggregation": "days within facility, then equal facilities",
+  "uncertainty": "existing 5000 registered 2024-operator multiplicity draws",
+  "intervals": "no new interval calibration or width changes",
+  "source_basis_and_scaling": "original serialized specification, no future fitting",
+  "status": "retrospective_development"
+}

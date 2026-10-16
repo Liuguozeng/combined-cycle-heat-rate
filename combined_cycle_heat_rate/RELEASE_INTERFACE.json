@@ -1,11 +1,11 @@
 {
-  "version": "1.0.4",
+  "version": "1.0.5",
   "scientific_root": "combined_cycle_heat_rate",
   "paper": "combined_cycle_heat_rate",
   "figure_map": {
     "1": 1,
     "2": "S3",
-    "3": 2,
+    "3": "S4",
     "4": 5,
     "5": 3,
     "6": 4
@@ -26,6 +26,13 @@
   "supplementary_figures": [
     "S1",
     "S2",
-    "S3"
-  ]
+    "S3",
+    "S4"
+  ],
+  "response_transfer": {
+    "main_figure": 2,
+    "methods": "response_transfer/protocol.json",
+    "new_model_fits": true,
+    "original_models_and_inputs_unchanged": true
+  }
 }
