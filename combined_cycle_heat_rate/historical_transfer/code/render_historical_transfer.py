@@ -379,8 +379,6 @@ def render(results, output, mean_summary=None):
                                 'facility_name_2024': identity.facility_name_2024,
                                 'operator_id_2024': int(identity.operator_id_2024), 'operator_id_2025': int(identity.operator_id_2025),
                                 'mae_change': float(getattr(row, column)), 'worsened': bool(getattr(row, column) > 0)})
-        fig.text(0.10, 0.075, 'Facilities are independently sorted in each panel; physical IDs and exact values are in the source CSV.', fontsize=8)
-        fig.text(0.10, 0.045, 'Common vertical scale across all eight panels; positive MAE changes indicate worsening.', fontsize=8)
         save_figure(fig, output, 'Figure_S2_' + scope)
         plt.close(fig)
     pd.DataFrame(mapping).to_csv(output / 'Figure_S2_identity_mapping.csv', index=False)

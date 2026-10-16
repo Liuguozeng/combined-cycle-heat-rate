@@ -5,7 +5,7 @@ Code, fixed model specifications and derived evidence for multi-year combined-cy
 ## Reproduce
 
 Clone this repository, then download `combined_cycle_heat_rate_data.zip` from
-[release 1.0.3](https://github.com/Liuguozeng/combined-cycle-heat-rate/releases/tag/v1.0.3) and extract it in the repository
+[release 1.0.3](https://github.com/Liuguozeng/combined-cycle-heat-rate/releases/tag/v1.0.4) and extract it in the repository
 root. Its members complete the existing `combined_cycle_heat_rate/` directory.
 
 ```bash
