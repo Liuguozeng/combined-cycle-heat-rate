@@ -1,6 +1,6 @@
 # Combined cycle heat rate
 
-Release version: 1.0.8.
+Release version: 1.0.9.
 
 This package contains fixed-relation results, receiving-facility evaluations,
 historical-assignment controls and figure source values. Extract the code and
@@ -28,6 +28,17 @@ facility departures are Supplementary Figure S4. The complete historical
 temperature-load response comparisons are Supplementary Figure S5. Stable numerical
 source identities are listed separately from display numbers in
 `MANUSCRIPT_INTERFACE.json`.
+
+Figure 2 uses the shared public layout in `response_transfer/figure_layout.py`:
+facility-equal MAE bars with pointwise 95% operator-cluster intervals, and all
+240 historical response coefficients. This release changes presentation only;
+scientific inputs, fitted parameters, predictions and resampling records are
+unchanged. Figure S5 and the renderer's three source CSV outputs are retained.
+The rendering dependencies and scientific command behavior are unchanged.
+
+```bash
+python3 -B response_transfer/test_figure_layout.py
+```
 
 Numerical reductions of the supplied tables are separate:
 

@@ -1,5 +1,5 @@
 {
-  "version": "1.0.8",
+  "version": "1.0.9",
   "scientific_root": "combined_cycle_heat_rate",
   "paper": "combined_cycle_heat_rate",
   "figure_map": {
@@ -39,6 +39,11 @@
       "predictor_error",
       "historical_coefficient_distribution"
     ],
-    "condition_strata_figure": "S5"
+    "condition_strata_figure": "S5",
+    "figure_layout": "response_transfer/figure_layout.py",
+    "figure_size_mm": [178, 106],
+    "panel_a": "facility-equal MAE bars with pointwise operator-cluster 95% CIs",
+    "panel_b": "all 240 historical response coefficients with empirical summaries",
+    "rendering_fits_or_resamples": false
   }
 }

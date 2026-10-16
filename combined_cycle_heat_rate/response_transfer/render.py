@@ -8,6 +8,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib import font_manager
 from matplotlib.colors import LinearSegmentedColormap,TwoSlopeNorm
+from figure_layout import response_figure
 BLUE="#2879AD";PINK="#C97E9C";INK="#26333D";GRAY="#7C8792"
 NAMES=["historical_mean","historical_median","original_centered","within_source_centered","local_response"]
 LABELS=["Historical mean","Historical median","Original centered response","Within-source response","Local response"]
@@ -34,36 +35,7 @@ def response(source, out):
     summary = pd.read_csv(source / 'candidate_summaries.csv')
     cal = pd.read_csv(source / 'historical_calibration.csv')
     strata = pd.read_csv(source / 'stratum_summaries.csv')
-    fig = plt.figure(figsize=(178 / 25.4, 76 / 25.4))
-    a = fig.add_axes([0.255, 0.24, 0.325, 0.58])
-    b = fig.add_axes([0.72, 0.24, 0.25, 0.58])
-    colors = [GRAY, GRAY, PINK, '#65A7C4', BLUE]
-    markers = ['o', 'D', 's', '^', 'o']
-    for model, dy in [('M1', 0.12), ('M2', -0.12)]:
-        for k, c in enumerate(NAMES):
-            if k < 2 and model == 'M2':
-                continue
-            r = summary.query('scope=="main" and model==@model and candidate==@c').iloc[0]
-            offset = 0 if k < 2 else dy
-            a.errorbar(r.mae, 4 - k + offset, xerr=[[r.mae - r.mae_ci95_lower], [r.mae_ci95_upper - r.mae]], fmt=markers[k], mfc='white' if model == 'M2' else colors[k], mec=colors[k], ecolor=colors[k], markersize=4.2, capsize=2, elinewidth=0.8)
-    a.set(yticks=range(5), yticklabels=LABELS[::-1], xlabel='Facility-equal MAE (MMBtu/MWh)', xlim=(0.1, 0.31))
-    a.set_xticks([0.1, 0.15, 0.2, 0.25, 0.3])
-    a.grid(axis='x', color='#E6E8EA', lw=0.5)
-    clean(a)
-    fig.text(0.045, 0.89, 'a', fontweight='bold', fontsize=11, va='baseline')
-    fig.text(0.08, 0.89, 'Later-year point error', fontsize=10, va='baseline')
-    fig.text(0.255, 0.045, 'Response predictors: filled M1 / open M2', fontsize=8)
-    for model, color, ls in [('M1', BLUE, '-'), ('M2', PINK, '--')]:
-        x = np.sort(cal.query('model==@model').response_coefficient.to_numpy())
-        b.step(x, np.arange(1, len(x) + 1) / len(x), where='post', color=color, ls=ls, lw=1.4, label=model)
-    b.axvline(0, color=GRAY, lw=0.7)
-    b.axvline(1, color=GRAY, lw=0.7, ls=':')
-    b.set(xlim=(-0.75, 1.12), ylim=(0, 1.03), xlabel='2024 response coefficient', ylabel='Facility proportion')
-    b.set_xticks([-0.5, 0, 0.5, 1])
-    b.legend(frameon=False, fontsize=8, loc='upper left')
-    clean(b)
-    fig.text(0.72, 0.89, 'b', fontweight='bold', fontsize=11, va='baseline')
-    fig.text(0.755, 0.89, 'Historical response scale', fontsize=10, va='baseline')
+    fig = response_figure(summary, cal)
     save(fig, out, 'Figure_2')
 
     fig = plt.figure(figsize=(178 / 25.4, 92 / 25.4))
