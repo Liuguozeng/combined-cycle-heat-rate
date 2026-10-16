@@ -1,5 +1,5 @@
 {
-  "version": "1.0.6",
+  "version": "1.0.7",
   "scientific_root": "combined_cycle_heat_rate",
   "paper": "combined_cycle_heat_rate",
   "figure_map": {
@@ -27,12 +27,18 @@
     "S1",
     "S2",
     "S3",
-    "S4"
+    "S4",
+    "S5"
   ],
   "response_transfer": {
     "main_figure": 2,
     "methods": "response_transfer/protocol.json",
     "new_model_fits": true,
-    "original_models_and_inputs_unchanged": true
+    "original_models_and_inputs_unchanged": true,
+    "main_panels": [
+      "predictor_error",
+      "historical_coefficient_distribution"
+    ],
+    "condition_strata_figure": "S5"
   }
 }

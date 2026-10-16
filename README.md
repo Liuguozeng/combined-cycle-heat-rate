@@ -1,11 +1,11 @@
-# Historical facility departures retain later-year information in fixed combined-cycle heat-rate baselines
+# Plant-specific levels and condition responses in cross-year combined-cycle heat-rate assessment
 
 Code, fixed model specifications and derived evidence for multi-year combined-cycle heat-rate evaluation.
 
 ## Reproduce
 
 Clone this repository, then download `combined_cycle_heat_rate_data.zip` from
-[release 1.0.6](https://github.com/Liuguozeng/combined-cycle-heat-rate/releases/tag/v1.0.6) and extract it in the repository
+[release 1.0.7](https://github.com/Liuguozeng/combined-cycle-heat-rate/releases/tag/v1.0.7) and extract it in the repository
 root. Its members complete the existing `combined_cycle_heat_rate/` directory.
 
 ```bash
@@ -32,4 +32,4 @@ Source data, upstream material and derived data retain the terms documented in
 records. The MIT license does not replace those source-specific terms.
 Original source archives are obtained from the cited official records.
 
-The 1.0.6 release adds the historical-level and operating-condition-response comparisons. See `combined_cycle_heat_rate/response_transfer/README.md` for the new fit-and-evaluate command.
+Release 1.0.7 presents the predictor comparison and historical coefficient distributions in main Figure 2, with complete condition strata in Supplementary Figure S5. Scientific inputs, fitted parameters and predictions are unchanged from 1.0.6. The response command remains documented in `combined_cycle_heat_rate/response_transfer/README.md`.

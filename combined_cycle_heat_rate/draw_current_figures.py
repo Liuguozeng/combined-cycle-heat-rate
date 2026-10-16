@@ -48,6 +48,7 @@ def main():
     response_output = output / 'response_evidence'
     invoke(root / 'response_transfer/render.py', ['--results', root / 'response_transfer/results', '--output', response_output])
     copy_figure(response_output / 'Figure_2', output / 'Figure_2', records, 'historical_levels_and_response')
+    copy_figure(response_output / 'Figure_S5', output / 'Figure_S5', records, 'historical_condition_strata')
     from followup_presentation import FollowupInputs, render_retrospective_si
     inputs = FollowupInputs(root / 'selected_presentation/presentation_inputs.json')
     holder = SimpleNamespace(output=output / 'supplementary_evidence', records=[])

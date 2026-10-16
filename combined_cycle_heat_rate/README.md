@@ -1,6 +1,6 @@
 # Combined cycle heat rate
 
-Release version: 1.0.6.
+Release version: 1.0.7.
 
 This package contains fixed-relation results, receiving-facility evaluations,
 historical-assignment controls and figure source values. Extract the code and
@@ -24,7 +24,8 @@ Main data figures show historical levels and response alternatives (Figure 2), c
 persistence (Figure 3), historical facility-assignment comparisons and the
 historical-mean predictor (Figure 4), and interval performance (Figure 5).
 The operating-support distribution is Supplementary Figure S3; single-year
-facility departures are Supplementary Figure S4. Stable numerical
+facility departures are Supplementary Figure S4. The complete historical
+temperature-load response comparisons are Supplementary Figure S5. Stable numerical
 source identities are listed separately from display numbers in
 `MANUSCRIPT_INTERFACE.json`.
 

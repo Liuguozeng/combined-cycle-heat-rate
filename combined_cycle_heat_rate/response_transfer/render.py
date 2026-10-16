@@ -10,7 +10,7 @@ from matplotlib import font_manager
 from matplotlib.colors import LinearSegmentedColormap,TwoSlopeNorm
 BLUE="#2879AD";PINK="#C97E9C";INK="#26333D";GRAY="#7C8792"
 NAMES=["historical_mean","historical_median","original_centered","within_source_centered","local_response"]
-LABELS=["Historical mean","Historical median","Original response","Within-source response","Local response"]
+LABELS=["Historical mean","Historical median","Original centered response","Within-source response","Local response"]
 def style():
     font_manager.findfont('Times New Roman', fallback_to_default=False)
     plt.rcParams.update({'font.family': 'Times New Roman', 'font.size': 8.5, 'axes.labelsize': 9, 'axes.titlesize': 10, 'xtick.labelsize': 8.5, 'ytick.labelsize': 8.5, 'axes.linewidth': 0.65, 'text.color': INK, 'axes.labelcolor': INK, 'xtick.color': INK, 'ytick.color': INK, 'pdf.fonttype': 42, 'ps.fonttype': 42, 'savefig.facecolor': 'white'})
@@ -34,25 +34,25 @@ def response(source, out):
     summary = pd.read_csv(source / 'candidate_summaries.csv')
     cal = pd.read_csv(source / 'historical_calibration.csv')
     strata = pd.read_csv(source / 'stratum_summaries.csv')
-    fig = plt.figure(figsize=(178 / 25.4, 151 / 25.4))
-    a = fig.add_axes([0.245, 0.59, 0.335, 0.3])
-    b = fig.add_axes([0.7, 0.59, 0.26, 0.3])
+    fig = plt.figure(figsize=(178 / 25.4, 76 / 25.4))
+    a = fig.add_axes([0.255, 0.24, 0.325, 0.58])
+    b = fig.add_axes([0.72, 0.24, 0.25, 0.58])
     colors = [GRAY, GRAY, PINK, '#65A7C4', BLUE]
     markers = ['o', 'D', 's', '^', 'o']
     for model, dy in [('M1', 0.12), ('M2', -0.12)]:
         for k, c in enumerate(NAMES):
+            if k < 2 and model == 'M2':
+                continue
             r = summary.query('scope=="main" and model==@model and candidate==@c').iloc[0]
-            a.errorbar(r.mae, 4 - k + dy, xerr=[[r.mae - r.mae_ci95_lower], [r.mae_ci95_upper - r.mae]], fmt=markers[k], mfc='white' if model == 'M2' else colors[k], mec=colors[k], ecolor=colors[k], markersize=4.2, capsize=2, elinewidth=0.8)
+            offset = 0 if k < 2 else dy
+            a.errorbar(r.mae, 4 - k + offset, xerr=[[r.mae - r.mae_ci95_lower], [r.mae_ci95_upper - r.mae]], fmt=markers[k], mfc='white' if model == 'M2' else colors[k], mec=colors[k], ecolor=colors[k], markersize=4.2, capsize=2, elinewidth=0.8)
     a.set(yticks=range(5), yticklabels=LABELS[::-1], xlabel='Facility-equal MAE (MMBtu/MWh)', xlim=(0.1, 0.31))
     a.set_xticks([0.1, 0.15, 0.2, 0.25, 0.3])
     a.grid(axis='x', color='#E6E8EA', lw=0.5)
     clean(a)
-    label(a, 'a', 'Later-year point error')
-    fig.text(0.045, 0.925, 'a', fontweight='bold', fontsize=11)
-    fig.text(0.08, 0.925, 'Later-year point error', fontsize=10)
-    for text in fig.texts[-4:-2]:
-        text.set_visible(False)
-    fig.text(0.245, 0.505, 'Filled: M1   Open: M2; 95% operator-cluster CIs', fontsize=8)
+    fig.text(0.045, 0.89, 'a', fontweight='bold', fontsize=11, va='baseline')
+    fig.text(0.08, 0.89, 'Later-year point error', fontsize=10, va='baseline')
+    fig.text(0.255, 0.045, 'Response predictors: filled M1 / open M2', fontsize=8)
     for model, color, ls in [('M1', BLUE, '-'), ('M2', PINK, '--')]:
         x = np.sort(cal.query('model==@model').response_coefficient.to_numpy())
         b.step(x, np.arange(1, len(x) + 1) / len(x), where='post', color=color, ls=ls, lw=1.4, label=model)
@@ -62,11 +62,15 @@ def response(source, out):
     b.set_xticks([-0.5, 0, 0.5, 1])
     b.legend(frameon=False, fontsize=8, loc='upper left')
     clean(b)
-    label(b, 'b', 'Historical response scale')
+    fig.text(0.72, 0.89, 'b', fontweight='bold', fontsize=11, va='baseline')
+    fig.text(0.755, 0.89, 'Historical response scale', fontsize=10, va='baseline')
+    save(fig, out, 'Figure_2')
+
+    fig = plt.figure(figsize=(178 / 25.4, 92 / 25.4))
     cmap = LinearSegmentedColormap.from_list('direction', [BLUE, '#FFFFFF', PINK])
     norm = TwoSlopeNorm(vmin=-0.03, vcenter=0, vmax=0.03)
-    for model, left, letter in [('M1', 0.13, 'c'), ('M2', 0.615, 'd')]:
-        ax = fig.add_axes([left, 0.135, 0.285, 0.285])
+    for model, left, letter in [('M1', 0.13, 'a'), ('M2', 0.615, 'b')]:
+        ax = fig.add_axes([left, 0.28, 0.285, 0.55])
         d = strata.query('kind=="conditions" and model==@model and candidate=="local_response"').copy()
         z = np.full((3, 3), np.nan)
         for r in d.itertuples():
@@ -82,14 +86,14 @@ def response(source, out):
         for spine in ax.spines.values():
             spine.set_color('#D1D6DA')
             spine.set_linewidth(0.6)
-    cax = fig.add_axes([0.29, 0.055, 0.42, 0.017])
+    cax = fig.add_axes([0.29, 0.085, 0.42, 0.028])
     cb = fig.colorbar(im, cax=cax, orientation='horizontal', ticks=[-0.03, 0, 0.03])
     cb.ax.tick_params(labelsize=8, length=2)
-    fig.text(0.045, 0.049, 'MAE difference\n(MMBtu/MWh)', fontsize=8, va='center')
-    save(fig, out, 'Figure_2')
+    fig.text(0.045, 0.088, 'MAE difference\n(MMBtu/MWh)', fontsize=8, va='center')
+    save(fig, out, 'Figure_S5')
     summary.to_csv(out / 'Figure_2_source_summary.csv', index=False, float_format='%.17g')
     cal.to_csv(out / 'Figure_2_source_coefficients.csv', index=False, float_format='%.17g')
-    strata.to_csv(out / 'Figure_2_source_strata.csv', index=False, float_format='%.17g')
+    strata.to_csv(out / 'Figure_S5_source_strata.csv', index=False, float_format='%.17g')
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--results',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args()

@@ -23,3 +23,5 @@ The 5,000 registered operator draws define pointwise conditional intervals.
 Requirements are NumPy, pandas, SciPy and the existing plotting environment.
 Original data terms remain those in the package license matrices. Code is covered
 by the package's author-controlled code license; source records retain attribution.
+
+Main Figure 2 contains predictor errors and historical coefficient distributions. Supplementary Figure S5 contains all nine historical temperature-load strata; complete quarter and matched-date results remain in the supplied tables.
