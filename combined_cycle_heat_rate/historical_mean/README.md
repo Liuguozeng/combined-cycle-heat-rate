@@ -5,10 +5,10 @@ on each facility's complete 2024 weather-bridge in-support dates.
 Historical means and facility offsets are estimated from those 2024 records;
 2025 observations supply the evaluation outcomes.
 
-The main comparison uses the same 120 facilities and 29,443 evaluation dates as
+The main comparison uses the same 120 facilities and 29,443 facility-days as
 the historical-transfer branch. The conditional comparison uses the existing
-101 facilities and 6,723 matched 2025 dates. M1 and M2 share facility
-observations and evaluation dates.
+101 facilities and 6,723 matched 2025 facility-days. M1 and M2 are evaluated
+on the same facility-date records.
 
 Run the `historical-mean` command documented in the root README. Input paths are
 relative to `input_manifest.json`, and their hashes identify the frozen weather

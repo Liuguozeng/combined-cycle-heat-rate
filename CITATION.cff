@@ -3,7 +3,7 @@ cff-version: 1.2.0
 message: Please cite this software when reusing the code or derived evidence.
 type: software
 title: "Plant-specific levels and condition responses in cross-year combined-cycle heat-rate assessment"
-version: 1.0.9
+version: 1.0.10
 date-released: '2026-10-16'
 url: https://github.com/Liuguozeng/combined-cycle-heat-rate
 repository-code: https://github.com/Liuguozeng/combined-cycle-heat-rate

@@ -5,7 +5,7 @@ Code, fixed model specifications and derived evidence for multi-year combined-cy
 ## Reproduce
 
 Clone this repository, then download `combined_cycle_heat_rate_data.zip` from
-[release 1.0.9](https://github.com/Liuguozeng/combined-cycle-heat-rate/releases/tag/v1.0.9) and extract it in the repository
+[release 1.0.10](https://github.com/Liuguozeng/combined-cycle-heat-rate/releases/tag/v1.0.10) and extract it in the repository
 root. Its members complete the existing `combined_cycle_heat_rate/` directory.
 
 ```bash
@@ -32,4 +32,4 @@ Source data, upstream material and derived data retain the terms documented in
 records. The MIT license does not replace those source-specific terms.
 Original source archives are obtained from the cited official records.
 
-Release 1.0.9 presents the predictor comparison and historical coefficient distributions in main Figure 2, with complete condition strata in Supplementary Figure S5. Scientific inputs, fitted parameters and predictions are unchanged from 1.0.6. The response command remains documented in `combined_cycle_heat_rate/response_transfer/README.md`.
+Release 1.0.10 presents the predictor comparison and historical coefficient distributions in main Figure 2, with complete condition strata in Supplementary Figure S5. Scientific inputs, fitted parameters and predictions are unchanged from 1.0.6. The response command remains documented in `combined_cycle_heat_rate/response_transfer/README.md`.
